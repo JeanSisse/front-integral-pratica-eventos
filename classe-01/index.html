@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/galeria.css">
+        <script src="scripts/galeria.js" defer></script>
+        <title>Galeria</title>
+    </head>
+    
+    <body class="container">
+        <nav class="menu-lateral">
+            <ul class="menu">
+                <li class="menu__item">
+                    <button class="menu-hamburguer">
+                        <img src="assets/closed-menu.svg" alt="menu hamburguer">
+                    </button>
+                </li>
+                
+                <li class="menu__item">
+                    <button>
+                        <img src="assets/active-home.svg" alt="home">
+                    </button>
+
+                    <span class="menu__item--name font-roboto bold-font normal-style cor-branca">
+                        Início
+                    </span>
+                </li>
+                <li class="menu__item">
+                    <button>
+                        <img src="assets/inactive-like.svg" alt="favorito">
+                    </button>
+
+                    <span class="menu__item--name font-roboto bold-font normal-style">
+                        Favorito
+                    </span>
+                </li>
+            </ul>
+
+            <div class="menu__item">
+                <button>
+                    <img src="assets/inactive-settings.svg" alt="configurações">
+                </button>
+
+                <span class="menu__item--name font-roboto bold-font normal-style">
+                    Configurações
+                </span>
+            </div>
+        </nav>
+
+        <main class="main">
+            <h1 class="titulo font-roboto bold-font normal-style">Início</h1>
+
+            <div class="galeria">
+                <div class="img">
+                    <img src="assets/gallery/image 1.png" alt="Rato">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 2.png" alt="Gato">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 3.png" alt="Lobo de neve">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 4.png" alt="Chimpanze">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 5.png" alt="borboleta">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 6.png" alt="Tigre branco">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 7.png" alt="Raposa">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 8.png" alt="Lobo de neve">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 9.png" alt="Tartaruga">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+                <div class="img">
+                    <img src="assets/gallery/image 10.png" alt="Leão">
+
+                    <div class="img__footer font-roboto light-font normal-style">
+                        <h4>
+                            Lorem ipsum
+                        </h4>
+                        <span>há 1 mês</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal">
+                <img id="close-modal" src="assets/close-modal.svg" alt="fechar modal">
+                <div class="img-navegacao">
+                    <img id="prev">
+                    <img id="img-modal-atual">
+                    <img id="next">
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
