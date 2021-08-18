@@ -3,64 +3,123 @@ const menu = document.querySelector('.menu-hamburguer img');
 const menuLateral = document.querySelector('.menu-lateral');
 const menuItemName = document.querySelectorAll('.menu__item--name');
 
+// IMG-MODAL variaveis
+const modal = document.querySelector('.modal');
+const imagens = document.querySelectorAll('.imgs-galeria');
+const imgModal = document.querySelector('.modal #img-modal-atual');
+const prevImg = document.querySelector('#prev');
+const nextImg = document.querySelector('#next');
+const btnFechar = document.querySelector('.modal #close-modal');
+
+let imgAtual = 0;
+
+// IMG-MODAL-LIKE variaveis
+const modalLike = document.querySelector('.modal-like');
+const imgLike = document.querySelector('galeria-like');
+let arrayLikes = [];
+
+function abrirFecharMenuLateral(classeModal, tipoDeDisplay, src){
+    menuLateral.className = classeModal;
+    menuItemName.forEach(function (item){
+        item.style.display = tipoDeDisplay;
+    });
+    menu.src = src;
+}
 
 menu.addEventListener('click', function (){
-    console.log('ok')
-    if(menuLateral.className === 'menu-lateral'){
-        menuLateral.className = 'menu-modal';
-        menuItemName.forEach(function (item){
-            item.style.display = 'flex';
-        });
-        menu.src = './assets/close-menu.svg'
+    if (menuLateral.className === 'menu-lateral') {
+        const src = './assets/close-menu.svg';
+        abrirFecharMenuLateral('menu-modal', 'flex', src);
     } else {
-        menuLateral.className = 'menu-lateral'
-        menuItemName.forEach(function (item){
-            item.style.display = 'none';
-        });
-        menu.src = './assets/closed-menu.svg';
+        const src = './assets/closed-menu.svg';
+        abrirFecharMenuLateral('menu-lateral', 'none', src);
     }
 });
 
-// IMG-MODAL variaveis
-const modal = document.querySelector('.modal');
-const imagens = document.querySelectorAll('.galeria img');
-const imgModal = document.querySelector('.modal #img-modal-atual');
-const prevImg = document.querySelector('.img-navegacao #prev');
-const nextImg = document.querySelector('.img-navegacao #next');
-const btnFechar = document.querySelector('.modal #close-modal');
+
+function atualizarSetas(index){
+    if (index > 0) {
+        prevImg.classList.remove('display-none');
+    } else {
+        prevImg.classList.add('display-none');
+    }
+    
+    if (index < (imagens.length - 1)) {
+        nextImg.classList.remove('display-none');
+    } else {
+        nextImg.classList.add('display-none');
+    }
+}
+
+function stopPropagation(event){
+    event.stopPropagation();
+}
 
 function abrirModal(src) {
     imgModal.src = src;
-
-    
-
 	modal.style.display = 'flex';
 }
 
 function fecharModal(){
     modal.style.display = 'none';
-    prevImg.removeAttribute('src');
-    nextImg.removeAttribute('src');
+    prevImg.classList.add('display-none');
+    nextImg.classList.add('display-none');
 }
 
 imagens.forEach(function (img, index){
-	img.addEventListener('click', function (event){
-        
-        if(index > 0){
-            prevImg.src = './assets/prev.svg'
-        }
-    
-        if(index < (imagens.length - 1)){
-            nextImg.src = './assets/next.svg'
-        }
+    img.addEventListener('click', function (event){
+        atualizarSetas(index);
+        imgAtual = index;
+        atualizarLikes(imgAtual);
 		abrirModal(event.target.src);
 	});
 });
 
-prevImg.addEventListener('click', function(){
-    // const index = imagens.indexOf(imgModal.src);
-    console.log(imagens);
-    abrirModal(imagens.previousSimblig);
+function atualizarLikes(index){
+    if (arrayLikes.includes(index)) {
+        modalLike.classList.remove('display-none');
+    } else {
+        modalLike.classList.add('display-none');
+    }
+}
+
+imgModal.addEventListener('dblclick', function () {
+    const itemLike = imagens[imgAtual].nextElementSibling;
+
+    if (arrayLikes.includes(imgAtual)) {
+        arrayLikes = arrayLikes.filter(function (imgCurtida) {
+            return imgCurtida !== imgAtual;
+        });
+
+        itemLike.classList.add('display-none');
+    } else {
+        itemLike.classList.remove('display-none');
+        arrayLikes.push(imgAtual);
+    }
+    atualizarLikes(imgAtual);
+        
+});
+
+imgModal.addEventListener('click', function (event) {
+    stopPropagation(event);
+});
+
+prevImg.addEventListener('click', function(event){
+    stopPropagation(event);
+    if (imgAtual !== 0) {
+        atualizarSetas(--imgAtual);
+        atualizarLikes(imgAtual);
+        abrirModal(imagens[imgAtual].src);
+    }
+});
+
+nextImg.addEventListener('click', function(event){
+    stopPropagation(event);
+    if (imgAtual < imagens.length - 1) {
+        atualizarSetas(++imgAtual);
+        atualizarLikes(imgAtual);
+        abrirModal(imagens[imgAtual].src);
+    }
 });
 
 modal.addEventListener('click', function (){
@@ -70,12 +129,3 @@ modal.addEventListener('click', function (){
 btnFechar.addEventListener('click', function (){
     fecharModal();
 });
-
-// linkModal.addEventListener('click', function (event) {
-// 	event.stopPropagation();
-// });
-
-/**
-* Resolver action nos botões prev e next para passar próximas
-* imagens
-* */
